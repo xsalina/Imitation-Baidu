@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>无标题文档</title>
+	<style>
+		.box {
+			width: 720px;
+			margin:0 auto;
+			text-align: center;
+			font-size: 0;
+		}
+
+		.top {
+			width: 540px;
+			height: 258px;
+			margin: 0 auto;
+
+		}
+
+		.top a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-decoration: none;
+		}
+
+		.top a img {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		.form {
+			/* position:absolute;
+			left:0;
+			right:0;
+			margin:auto;
+			width:720px; */
+			position:relative;
+			width:100%;
+			font-size: 0;
+		}
+
+		.form .text,
+		.form .submit {
+			padding: 0;
+			border: none;
+		}
+
+		.form .text {
+			width: 590px;
+			height: 45px;
+			border: 1px solid #317EF3;
+			font-size: 17px;
+			text-indent: 5px;
+			vertical-align: middle;
+			outline: none;
+
+
+		}
+
+		.form .submit {
+			width: 112px;
+			height: 48px;
+			background-color: #317EF3;
+			color: white;
+			font-size: 18px;
+			vertical-align: middle;
+		}
+
+		.form .user {
+			position: relative;
+
+		}
+
+		.form .user span {
+			position: absolute;
+			top: 22px;
+			right: 110px;
+			width: 18px;
+			height: 16px;
+			margin: -5px 24px 0 0;
+			background: url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_5606e8f.png") no-repeat;
+
+		}
+
+		.form .user span:hover {
+			background: url("https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/soutu/img/camera_new_5606e8f.png") 0px -20px
+		}
+
+		#list {
+			display: inline-block;
+			width: 704px;
+			padding: 0;
+			/* background-color:red; */
+			list-style: none;
+		}
+
+		#list li {
+			width: 100%;
+		}
+
+		#list li a {
+			display: block;
+			width: 100%;
+			height: 30px;
+			line-height: 30px;
+			text-align: left;
+			text-indent: 5px;
+			font-size: 14px;
+			text-decoration: none;
+			color: black;
+
+
+		}
+
+		#list li:hover {
+			background-color: bisque;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<div class="top">
+			<a href="仿百度.html">
+				<img src="images/logo.png" width="540" height="258" />
+			</a>
+		</div>
+		<div class="form">
+			<form class="user" action="https://www.baidu.com/s" method="" name="" target="_self">
+				<input class="text" type="text" id="text" name="wd" value="" autofocus autocomplete="off" maxlength="100" />
+				<input class="submit" type="submit" name="" value="百度一下">
+				<span></span>
+			</form>
+		</div>
+		<ul id="list">
+			<!-- <li><a href="">我是</a></li> -->
+		</ul>
+	</div>
+	<script>
+		
+		var oinput = document.getElementById("text"),
+				olist = document.getElementById("list");
+
+			oinput.oninput = function () {
+				var val = oinput.value;
+				if (val) {
+					var os = document.createElement("script");
+					os.src = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${val}&cb=xyp`;
+					document.body.appendChild(os);
+
+					os.onload = function () {
+						document.body.removeChild(os);
+					}
+				}
+
+			}
+			function xyp(obj) {
+				var arr = obj.s,
+					lihtml = "";
+				for (var i = 0, len = arr.length; i < len; i++) {
+					lihtml += `<li><a href="https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=1&tn=baidu&wd=${arr[i]}">${arr[i]}</a></li>`;
+				}
+				olist.innerHTML = lihtml;
+			}
+		
+
+	</script>
+</body>
+
+</html>
